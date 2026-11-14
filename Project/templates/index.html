@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSpace | Mental Wellness Predictor</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="/static/script.js" defer></script>  
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">✦ MindSpace</div>
+        <span class="status">● Wellness Insights</span>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div>
+            <p class="eyebrow">YOUR WELLNESS JOURNEY</p>
+            <h1>
+                Understand Your Habits.<br>
+                <span>Support Your Wellbeing.</span>
+            </h1>
+            <p class="hero-text">
+                Discover insights about your daily habits, social media
+                usage, academic routine and overall mental wellness
+                through machine learning.
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN FORM -->
+    <section class="main-layout">
+
+        <div class="card form-card">
+
+            <div class="card-heading">
+                <div>
+                    <h2>Your Wellness Snapshot</h2>
+                    <p>Fill in your information to generate a prediction.</p>
+                </div>
+                <span class="step">12 DETAILS</span>
+            </div>
+
+            <form id="predictionForm">
+
+                <!-- PERSONAL DETAILS -->
+                <div class="section-heading">01. Personal Information</div>
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>Age</label>
+                        <input type="number" id="age" min="10" max="100"
+                               placeholder="Enter your age" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Gender</label>
+                        <select id="gender" required>
+                            <option value="">Select gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Country</label>
+                        <input type="text" id="country"
+                               placeholder="e.g. India" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Academic Level</label>
+                        <select id="academic_level" required>
+                            <option value="">Select level</option>
+                            <option>Undergraduate</option>
+                            <option>Graduate</option>
+                            <option>High School</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- SOCIAL MEDIA -->
+                <div class="section-heading">02. Digital Habits</div>
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>Most Used Platform</label>
+                        <select id="platform" required>
+                            <option value="">Select platform</option>
+                            <option>Facebook</option>
+                            <option>LinkedIn</option>
+                            <option>Instagram</option>
+                            <option>Snapchat</option>
+                            <option>Twitter</option>
+                            <option>YouTube</option>
+                            <option>TikTok</option>
+                            <option>LINE</option>
+                            <option>KakaoTalk</option>
+                            <option>VKontakte</option>
+                            <option>WhatsApp</option>
+                            <option>WeChat</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Purpose of Use</label>
+                        <select id="purpose" required>
+                            <option value="">Select purpose</option>
+                            <option>Networking</option>
+                            <option>Education</option>
+                            <option>Entertainment</option>
+                            <option>News</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Daily Social Media Usage (Hours)</label>
+                        <div class="range-box">
+                            <input type="range" id="usage"
+                                   min="0" max="24" step="0.5" value="4">
+                            <span id="usageValue">4</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Daily Phone Unlocks</label>
+                        <input type="number" id="unlocks"
+                               min="0" placeholder="e.g. 50" required>
+                    </div>
+
+                </div>
+
+                <!-- WELLBEING -->
+                <div class="section-heading">03. Daily Wellbeing</div>
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>Study Hours</label>
+                        <div class="range-box">
+                            <input type="range" id="study"
+                                   min="0" max="24" step="0.5" value="5">
+                            <span id="studyValue">5</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Physical Activity Hours</label>
+                        <div class="range-box">
+                            <input type="range" id="activity"
+                                   min="0" max="24" step="0.5" value="1">
+                            <span id="activityValue">1</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Sleep Hours Per Night</label>
+                        <div class="range-box">
+                            <input type="range" id="sleep"
+                                   min="0" max="24" step="0.5" value="7">
+                            <span id="sleepValue">7</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Stress Level</label>
+                        <select id="stress" required>
+                            <option value="">Select stress level</option>
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                            <option>Very High</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" id="predictBtn">
+                        Generate Prediction →
+                    </button>
+
+                    <button type="reset" class="reset-btn">
+                        Reset
+                    </button>
+                </div>
+
+                <p id="errorMessage" class="error"></p>
+
+            </form>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <aside class="side-panel">
+
+            <div class="info-card">
+                <div class="info-icon">✧</div>
+                <h3>Small Habits Matter</h3>
+                <p>
+                    Your daily habits, sleep and physical activity
+                    are useful areas for self-reflection.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">◎</div>
+                <h3>Machine Learning Powered</h3>
+                <p>
+                    Your submitted information is processed by
+                    our trained machine learning model.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">♡</div>
+                <h3>Your Wellbeing Matters</h3>
+                <p>
+                    Use this prediction for educational purposes,
+                    not as a medical diagnosis.
+                </p>
+            </div>
+
+        </aside>
+
+    </section>
+
+    <!-- RESULTS DASHBOARD -->
+    <section id="dashboard" class="dashboard hidden">
+
+        <div class="dashboard-heading">
+            <div>
+                <p class="eyebrow">YOUR ANALYSIS</p>
+                <h2>Prediction Dashboard</h2>
+                <p class="hero-text">
+                    Your latest model prediction and previous results.
+                </p>
+            </div>
+
+            <button id="clearHistory" class="reset-btn">
+                Clear History
+            </button>
+        </div>
+
+        <!-- SCORE AND SUMMARY -->
+        <div class="result-grid">
+
+            <div class="card score-card">
+                <h3>Latest Predicted Score</h3>
+
+                <div class="gauge" id="gauge">
+                    <div class="gauge-inner">
+                        <strong id="scoreValue">--</strong>
+                        <span>Predicted Score</span>
+                    </div>
+                </div>
+
+                <p class="score-caption">
+                    Output generated by your ML model
+                </p>
+            </div>
+
+            <div class="card summary-card">
+                <h3>Prediction Summary</h3>
+
+                <div class="summary-item">
+                    <span>Prediction</span>
+                    <strong id="summaryScore">--</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Platform</span>
+                    <strong id="summaryPlatform">--</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Stress Level</span>
+                    <strong id="summaryStress">--</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Sleep Hours</span>
+                    <strong id="summarySleep">--</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Date & Time</span>
+                    <strong id="summaryDate">--</strong>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CHART -->
+        <div class="card chart-card">
+            <h3>Prediction History Analysis</h3>
+            <p>Your previous model prediction scores.</p>
+
+            <div class="chart-container">
+                <canvas id="historyChart"></canvas>
+            </div>
+        </div>
+
+        <!-- HISTORY TABLE -->
+        <div class="card history-card">
+            <h3>Previous Predictions</h3>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date & Time</th>
+                            <th>Score</th>
+                            <th>Platform</th>
+                            <th>Stress</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="historyTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        MindSpace · Machine Learning Wellness Predictor
+    </footer>
+
+</div>
+
+</body>
+</html>
