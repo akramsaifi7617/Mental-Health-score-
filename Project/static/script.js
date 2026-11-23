@@ -1,5 +1,5 @@
 
-const API_URL = "/predict";
+const API_URL = "https://mental-health-score-4-k7vy.onrender.com";
 
 // IMPORTANT:
 // This assumes your model score is on a 0-100 scale.
