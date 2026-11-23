@@ -1,5 +1,5 @@
 
-const API_URL = "http://127.0.0.1:8000/predict";
+const API_URL = "/predict";
 
 // IMPORTANT:
 // This assumes your model score is on a 0-100 scale.
